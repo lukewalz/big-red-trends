@@ -33,9 +33,6 @@ const NavBar = ({ stat, team, getTeams, getStats, setSideOfBall, clearYearDetail
                 <Box display='flex' justifyContent='spaceBetween' >
                     {!stat.statLoading ?
                         <img src={stat.logo} className="App-logo" alt="logo" width='50rem' /> : <CircularProgress />}
-                    <Typography variant="h6" >
-                        Big Red Trends
-               </Typography>
                 </Box>
 
                 <Box width={300} display='flex' justifyContent='inherit'>
