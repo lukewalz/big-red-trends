@@ -1,6 +1,6 @@
 import Highcharts from 'highcharts/highstock'
 import HighchartsReact from 'highcharts-react-official'
-import { Paper, Tabs, Tab, CircularProgress, Box, SnackBar } from '@material-ui/core'
+import { Paper, Tabs, Tab, CircularProgress, Box } from '@material-ui/core'
 import {
     SET_METRIC_REQUESTED,
     SET_GRAPH_TYPE_REQUESTED,

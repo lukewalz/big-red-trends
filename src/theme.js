@@ -23,7 +23,7 @@ export const theme = createMuiTheme({
             }
         },
         MuiSelect: {
-            variant: 'filled',
+            variant: 'standard',
         },
         MuiTypography: {
             style: {
@@ -31,10 +31,9 @@ export const theme = createMuiTheme({
                 alignSelf: 'center'
             }
         },
-        MuiFormLabel: {
+        MuiFormControl: {
             style: {
-                marginLeft: 5,
-                marginTop: 5
+                margin: 9
             }
         },
         MuiTableContainer: {

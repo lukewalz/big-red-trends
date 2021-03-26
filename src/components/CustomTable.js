@@ -1,10 +1,9 @@
 import { connect } from 'react-redux'
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TableSortLabel, Typography } from '@material-ui/core'
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core'
 import { capitalize } from '../common';
-import { useEffect } from 'react';
 
 
-const SortableTable = ({ year, stat }) => {
+const CustomTable = ({ year, stat }) => {
     return (
         <TableContainer component={Paper}>
             {year.yearDetails.length > 0 ?
@@ -42,4 +41,4 @@ const mapStateToProps = (state) => ({
 })
 
 
-export default connect(mapStateToProps, null)(SortableTable)
+export default connect(mapStateToProps, null)(CustomTable)

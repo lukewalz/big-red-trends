@@ -1,8 +1,8 @@
 import React from 'react';
 import NavBar from './components/NavBar';
 import LineGraph from './components/LineGraph'
-import SortableTable from './components/SortableTable'
-import { Box, Typography } from '@material-ui/core';
+import CustomTable from './components/CustomTable'
+import { Box } from '@material-ui/core';
 import store from './redux/store'
 import { Provider } from 'react-redux'
 
@@ -14,7 +14,7 @@ const App = () => {
       <NavBar />
       <Box margin={3} >
         <LineGraph />
-        <SortableTable />
+        <CustomTable />
       </Box>
     </Provider >
   );
