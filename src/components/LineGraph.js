@@ -51,7 +51,7 @@ const LineGraph = ({ stat, setMetric, setGraphType, getYear }) => {
                         <Tab label='Explosiveness' value='explosiveness' />
                         <Tab label='Play Count' value='plays' />
                         <Tab label='Stuff Rate' value='stuffRate' />
-                        <Tab label='Second Level Yards' value='secondLevelYards' />
+                        <Tab label='Big Plays' value='secondLevelYards' />
                         <Tab label='Success Rate' value='successRate' />
                     </Tabs>
                     <HighchartsReact
