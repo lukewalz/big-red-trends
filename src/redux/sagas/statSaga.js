@@ -2,22 +2,28 @@ import {
     put,
     call,
     takeEvery,
-    take,
     all,
-    takeLatest
 } from 'redux-saga/effects';
 
 import { getAllStats } from '../api/statApi';
 
-import { GET_STAT, GET_STAT_REQUESTED, SET_LOADING, SET_METRIC, SET_METRIC_REQUESTED } from '../actions/statAction'
+import { GET_STAT, GET_STAT_REQUESTED, SET_STAT_LOADING, SET_METRIC, SET_METRIC_REQUESTED, SET_SIDE_OF_BALL, SET_SIDE_OF_BALL_REQUESTED, SET_TEAM, SET_GRAPH_TYPE, SET_GRAPH_TYPE_REQUESTED } from '../actions/statAction'
+
+function* setGraphType(graph) {
+    yield put({ type: SET_GRAPH_TYPE, payload: graph.graph })
+}
 
 function* setMetric(metric) {
-    console.log(metric)
     yield put({ type: SET_METRIC, payload: metric.metric })
 }
 
+function* setSideOfBall(sob) {
+    yield put({ type: SET_SIDE_OF_BALL, payload: sob.sob })
+}
+
 function* getStats(team) {
-    yield put({ type: SET_LOADING })
+    yield put({ type: SET_STAT_LOADING })
+    yield put({ type: SET_TEAM, payload: team.team });
 
     const stats = yield call(getAllStats, team.team)
 
@@ -49,6 +55,8 @@ function* getStats(team) {
 }
 
 export default function* statSaga() {
-    yield all([takeEvery(GET_STAT_REQUESTED, getStats)
-        , takeEvery(SET_METRIC_REQUESTED, setMetric)]);
+    yield all([takeEvery(GET_STAT_REQUESTED, getStats),
+    takeEvery(SET_METRIC_REQUESTED, setMetric),
+    takeEvery(SET_SIDE_OF_BALL_REQUESTED, setSideOfBall),
+    takeEvery(SET_GRAPH_TYPE_REQUESTED, setGraphType)])
 }

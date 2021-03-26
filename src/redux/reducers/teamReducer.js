@@ -1,26 +1,26 @@
 
 import {
     GET_TEAMS,
-    SET_LOADING
+    SET_TEAM_LOADING
 } from '../actions/statAction'
 
 // Define your state here
 const initialState = {
-    loading: false,
+    teamLoading: false,
     teams: []
 }
 
 export default (state = initialState, { type, payload }) => {
     switch (type) {
-        case SET_LOADING:
+        case SET_TEAM_LOADING:
             return {
                 ...state,
-                loading: true
+                teamLoading: true
             }
         case GET_TEAMS:
             return {
                 ...state,
-                loading: false,
+                teamLoading: false,
                 teams: payload
             }
         default:

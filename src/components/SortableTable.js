@@ -1,43 +1,43 @@
 import { connect } from 'react-redux'
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TableSortLabel, Typography } from '@material-ui/core'
+import { capitalize } from '../common';
+import { useEffect } from 'react';
 
-const SortableTable = ({ stat }) => {
+
+const SortableTable = ({ year, stat }) => {
     return (
         <TableContainer component={Paper}>
-            <Table>
-                <TableHead>
-                    <TableRow>
-                        <TableCell>Year</TableCell>
-                        <TableCell>Explosiveness</TableCell>
-                        <TableCell>Play Count</TableCell>
-                        <TableCell>Stuff Rate</TableCell>
-                        <TableCell>Big Play Yards</TableCell>
-                        <TableCell>Success Rate</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {stat.defense.map((s, i) =>
-                        <TableRow key={i}>
-                            <TableCell component="th" scope="row">
-                                {stat.years[i]}
-                            </TableCell>
-                            <TableCell>{s.explosiveness}</TableCell>
-                            <TableCell >{s.plays}</TableCell>
-                            <TableCell>{s.stuffRate}</TableCell>
-                            <TableCell>{s.secondLevelYards}</TableCell>
-                            <TableCell>{s.successRate}</TableCell>
+            {year.yearDetails.length > 0 ?
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Week</TableCell>
+                            <TableCell>Opponent</TableCell>
+                            <TableCell>Offense {capitalize(stat.metric)}</TableCell>
+                            <TableCell>Defense {capitalize(stat.metric)}</TableCell>
                         </TableRow>
-                    )}
-                </TableBody>
+                    </TableHead>
+                    <TableBody>
+                        {year.yearDetails.map((y, i) =>
+                            <TableRow key={i}>
+                                <TableCell component="th" scope="row">
+                                    {i}
+                                </TableCell>
+                                <TableCell>{y.opponent}</TableCell>
+                                <TableCell>{y.offense[stat.metric]}</TableCell>
+                                <TableCell>{y.defense[stat.metric]}</TableCell>
+                            </TableRow>)}
+                    </TableBody>
 
-            </Table>
-        </TableContainer>
-
+                </Table>
+                : []}
+        </TableContainer >
     )
 
 }
 
 const mapStateToProps = (state) => ({
+    year: state.year,
     stat: state.stat
 })
 

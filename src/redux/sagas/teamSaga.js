@@ -6,10 +6,10 @@ import {
 
 import { getAllTeams } from '../api/statApi';
 
-import { GET_TEAMS, GET_TEAMS_REQUESTED, SET_LOADING } from '../actions/statAction'
+import { GET_TEAMS, GET_TEAMS_REQUESTED, SET_TEAM_LOADING } from '../actions/statAction'
 
 function* getTeams() {
-    yield put({ type: SET_LOADING })
+    yield put({ type: SET_TEAM_LOADING })
 
     const teams = yield call(getAllTeams)
 

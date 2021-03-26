@@ -11,7 +11,7 @@ export const theme = createMuiTheme({
     },
     props: {
         MuiPaper: {
-            elevation: 3,
+            elevation: 3
         },
         MuiTabs: {
             variant: 'fullWidth'
@@ -20,6 +20,26 @@ export const theme = createMuiTheme({
             style: {
                 alignSelf: 'center',
                 margin: '5'
+            }
+        },
+        MuiSelect: {
+            variant: 'filled',
+        },
+        MuiTypography: {
+            style: {
+                margin: '10px',
+                alignSelf: 'center'
+            }
+        },
+        MuiFormLabel: {
+            style: {
+                marginLeft: 5,
+                marginTop: 5
+            }
+        },
+        MuiTableContainer: {
+            style: {
+                marginTop: 10
             }
         }
     }
