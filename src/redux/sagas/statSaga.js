@@ -1,24 +1,32 @@
 import {
     put,
     call,
-    takeEvery
+    takeEvery,
+    take,
+    all,
+    takeLatest
 } from 'redux-saga/effects';
 
 import { getAllStats } from '../api/statApi';
 
-import { GET_STAT, GET_STAT_REQUESTED, SET_LOADING } from '../actions/statAction'
+import { GET_STAT, GET_STAT_REQUESTED, SET_LOADING, SET_METRIC, SET_METRIC_REQUESTED } from '../actions/statAction'
+
+function* setMetric(metric) {
+    console.log(metric)
+    yield put({ type: SET_METRIC, payload: metric.metric })
+}
 
 function* getStats(team) {
     yield put({ type: SET_LOADING })
 
     const stats = yield call(getAllStats, team.team)
 
-    console.log(stats)
     var statsDto = stats.map(stat => {
         return {
             year: stat.season,
             team: stat.team,
             color: stat.color,
+            secondary: stat.secondary,
             logo: stat.logo,
             defense: {
                 explosiveness: stat.defense?.explosiveness,
@@ -41,5 +49,6 @@ function* getStats(team) {
 }
 
 export default function* statSaga() {
-    yield takeEvery(GET_STAT_REQUESTED, getStats)
+    yield all([takeEvery(GET_STAT_REQUESTED, getStats)
+        , takeEvery(SET_METRIC_REQUESTED, setMetric)]);
 }

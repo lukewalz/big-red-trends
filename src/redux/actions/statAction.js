@@ -1,4 +1,8 @@
 export const SET_LOADING = "SET_LOADING"
 export const GET_STAT = "GET_STAT";
 export const GET_STAT_REQUESTED = "GET_STAT_REQUESTED"
-
+export const GET_TEAMS = 'GET_TEAMS'
+export const GET_TEAMS_REQUESTED = 'GET_TEAMS_REQUESTED'
+export const CHANGE_TEAM = 'CHANGE_TEAM'
+export const SET_METRIC = 'SET_METRIC'
+export const SET_METRIC_REQUESTED = 'SET_METRIC_REQUESTED'

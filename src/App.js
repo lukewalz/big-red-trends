@@ -4,18 +4,24 @@ import LineGraph from './components/LineGraph'
 import BottomTabs from './components/BottomTabs'
 import SortableTable from './components/SortableTable'
 import { Box } from '@material-ui/core';
-
+import { makeStyles } from '@material-ui/styles'
 import store from './redux/store'
 import { Provider } from 'react-redux'
 
+const useStyles = makeStyles({
+  root: {
+    backgroundColor: 'gray',
+  }
+})
 
 const App = () => {
+  const classes = useStyles();
+
   return (
     <Provider store={store}>
       <NavBar />
-      <Box m={3}>
+      <Box margin={5} className={classes.root}>
         <LineGraph />
-        <SortableTable />
       </Box>
     </Provider>
   );

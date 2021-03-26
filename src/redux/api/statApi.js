@@ -8,6 +8,16 @@ const axios = defaultAxios.create({
     headers: { 'Content-Type': 'application/json' }
 });
 
+export const getAllTeams = async () => {
+    const teamResponse = await axios.get('teams/fbs');
+    try {
+        return teamResponse.data;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
 
 // Get All Todos
 export const getAllStats = async (team) => {
@@ -25,7 +35,8 @@ export const getAllStats = async (team) => {
     var combinedObject = stats.map(e => {
         var t = Object.assign({}, e);
         t.color = teamData.color;
-        t.logo = teamData.logos[0]
+        t.secondary = teamData.alt_color;
+        t.logo = teamData.logos[0];
         return t;
     })
 

@@ -9,4 +9,18 @@ export const theme = createMuiTheme({
             main: '#f6f6f6',
         },
     },
+    props: {
+        MuiPaper: {
+            elevation: 3,
+        },
+        MuiTabs: {
+            variant: 'fullWidth'
+        },
+        MuiCircularProgress: {
+            style: {
+                alignSelf: 'center',
+                margin: '5'
+            }
+        }
+    }
 });

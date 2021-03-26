@@ -1,17 +1,14 @@
 import Highcharts from 'highcharts/highstock'
 import HighchartsReact from 'highcharts-react-official'
-import { Paper, Select, InputLabel, MenuItem, Box } from '@material-ui/core'
+import { Paper, Tabs, Tab, CircularProgress } from '@material-ui/core'
 import {
-    GET_STAT_REQUESTED,
+    SET_METRIC, SET_METRIC_REQUESTED
 } from '../redux/actions/statAction';
-import React, { useEffect } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 
 
-const LineGraph = ({ getStats, stat }) => {
-    useEffect(() => {
-        getStats('missouri')
-    }, [getStats])
+const LineGraph = ({ stat, setMetric }) => {
 
     const options = {
         xAxis: {
@@ -19,27 +16,29 @@ const LineGraph = ({ getStats, stat }) => {
         },
         series: [{
             type: "line",
-            data: stat?.offense.map(e => e.stuffRate)
+            data: stat?.offense.map(e => e[stat.metric])
         }
         ],
         colors: ['#ff1536'],
         title: { text: stat.team }
     }
     return (
-        <Paper elevation={5}>
-            <HighchartsReact
-                highcharts={Highcharts}
-                options={options} />
-            <Box flexDirection='column' display='flex' justifyContent='center'>
-                <InputLabel id="label">Metric</InputLabel>
-                <Select value="explosiveness" labelId="label" id="select">
-                    <MenuItem value="explosiveness">Explosiveness</MenuItem>
-                    <MenuItem value="plays">Play Number</MenuItem>
-                    <MenuItem value="stuffRate">Stuff Rate</MenuItem>
-                    <MenuItem value="secondLevelYards">Big Play Yards</MenuItem>
-                    <MenuItem value="successRate">Success Rate</MenuItem>
-                </Select>
-            </Box>
+        <Paper>
+            {stat.loading ? <CircularProgress />
+                :
+                <div>
+                    <Tabs value={stat.metric} onChange={(i, e) => setMetric(e)}>
+                        <Tab label='Explosiveness' value='explosiveness' />
+                        <Tab label='Play Count' value='plays' />
+                        <Tab label='Stuff Rate' value='stuffRate' />
+                        <Tab label='Second Level Yards' value='secondLevelYards' />
+                        <Tab label='Success Rate' value='successRate' />
+                    </Tabs>
+                    <HighchartsReact
+                        highcharts={Highcharts}
+                        options={options} />
+                </div>
+            }
 
         </Paper>
     )
@@ -51,7 +50,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    getStats: (team) => dispatch({ type: GET_STAT_REQUESTED, team }),
+    setMetric: (metric) => dispatch({ type: SET_METRIC_REQUESTED, metric }),
 })
 
 

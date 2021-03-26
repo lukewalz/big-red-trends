@@ -16,19 +16,20 @@ const SortableTable = ({ stat }) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {stat ? stat.offense.map(s => {
-                        <TableRow key={s.year}>
+                    {stat.defense.map((s, i) =>
+                        <TableRow key={i}>
                             <TableCell component="th" scope="row">
-                                {s.year}
+                                {stat.years[i]}
                             </TableCell>
-                            <TableCell align="right">{s.explosiveness}</TableCell>
-                            <TableCell align="right">{s.plays}</TableCell>
-                            <TableCell align="right">{s.stuffRate}</TableCell>
-                            <TableCell align="right">{s.secondLevelYards}</TableCell>
-                            <TableCell align="right">{s.successRate}</TableCell>
+                            <TableCell>{s.explosiveness}</TableCell>
+                            <TableCell >{s.plays}</TableCell>
+                            <TableCell>{s.stuffRate}</TableCell>
+                            <TableCell>{s.secondLevelYards}</TableCell>
+                            <TableCell>{s.successRate}</TableCell>
                         </TableRow>
-                    }) : []}
+                    )}
                 </TableBody>
+
             </Table>
         </TableContainer>
 
