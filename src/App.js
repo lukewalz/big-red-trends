@@ -12,7 +12,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <NavBar />
-      <Box margin={3} >
+      <Box margin={2} >
         <LineGraph />
         <CustomTable />
       </Box>
