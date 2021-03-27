@@ -31,7 +31,7 @@ const NavBar = ({ stat, team, getTeams, getStats, setSideOfBall, clearYearDetail
             <Toolbar className={useStyles().bar}>
                 <Box display='flex' justifyContent='spaceBetween' >
                     {!stat.statLoading ?
-                        <img src={stat.logo} className="App-logo" alt="logo" width='50px' /> : <CircularProgress />}
+                        <img src={stat.logo} className="App-logo" alt="logo" maxWidth='20px' maxHeight='20px' /> : <CircularProgress />}
                 </Box>
 
                 <Box width={250} display='flex'>
