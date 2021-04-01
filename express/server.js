@@ -9,14 +9,16 @@ const cors = require('cors');
 
 dotenv.config();
 
+if (!process.env.API_KEY) {
+    console.error('FATAL ERROR: PrivateKey is not defined.');
+    process.exit(1);
+}
+
+
 const axios = defaultAxios.create({
     baseURL: 'https://api.collegefootballdata.com/',
     headers: { Authorization: `Bearer ${process.env.API_KEY}` },
 });
-
-
-// console.log that your server is up and running
-app.listen(port, () => console.log(`Listening on port ${port}`));
 
 app.use(bodyParser.json());
 app.use(cors());
