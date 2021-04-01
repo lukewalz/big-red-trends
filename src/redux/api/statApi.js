@@ -5,7 +5,7 @@ import defaultAxios from 'axios'
 
 const axios = defaultAxios.create({
     baseURL: 'https://api.collegefootballdata.com/',
-    headers: { 'Content-Type': 'application/json' }
+    headers: { 'Content-Type': 'application/json', 'Authorization': process.env.REACT_APP_API_KEY }
 });
 
 export const getAllTeams = async () => {
