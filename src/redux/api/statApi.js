@@ -2,10 +2,10 @@ import defaultAxios from 'axios'
 
 // https://api.collegefootballdata.com/stats/season/advanced
 
+const path = process.env.NODE_ENV === 'development' ? 'http://localhost:5000/.netlify/functions/server/' : '/.netlify/functions/server/'
 
 const axios = defaultAxios.create({
-    baseURL: 'http://localhost:5000/.netlify/functions/server/',
-    headers: { Authorization: `Bearer ${process.env.REACT_APP_API_KEY}` },
+    baseURL: path
 });
 
 export const getAllTeams = async () => {
