@@ -4,12 +4,12 @@ import defaultAxios from 'axios'
 
 
 const axios = defaultAxios.create({
-    baseURL: 'https://api.collegefootballdata.com/',
-    headers: { 'Content-Type': 'application/json', 'Authorization': process.env.REACT_APP_API_KEY }
+    baseURL: 'http://localhost:5000/.netlify/functions/server/',
+    headers: { Authorization: `Bearer ${process.env.REACT_APP_API_KEY}` },
 });
 
 export const getAllTeams = async () => {
-    const response = await axios.get('teams/fbs');
+    const response = await axios.get('teams');
     try {
         return response.data;
     } catch (error) {
@@ -18,7 +18,7 @@ export const getAllTeams = async () => {
 }
 
 export const getYearDetails = async (params) => {
-    const response = await axios.get(`stats/game/advanced?year=${params.year}&team=${params.team}`);
+    const response = await axios.get(`year?year=${params.year}&team=${params.team}`);
     try {
         return response.data;
     } catch (error) {
@@ -32,8 +32,8 @@ export const getAllStats = async (team) => {
     var stats = [];
     var teamData = {};
     try {
-        const statResponse = await axios.get(`stats/season/advanced?excludeGarbageTime=false&team=${team}`);
-        const teamResponse = await axios.get('teams/fbs')
+        const statResponse = await axios.get(`stats?excludeGarbageTime=false&team=${team}`);
+        const teamResponse = await axios.get('teams')
         stats = statResponse.data;
         teamData = teamResponse.data.find(e => e.school.toLowerCase() === team.toLowerCase())
     } catch (err) {
